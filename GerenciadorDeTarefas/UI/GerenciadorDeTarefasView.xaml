@@ -1,0 +1,38 @@
+﻿<Window x:Class="GerenciadorDeTarefas.UI.GerenciadorDeTarefasView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GerenciadorDeTarefas.UI"
+        mc:Ignorable="d"
+        Title="Gerenciamento de Tarefas" Height="450" Width="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <UniformGrid Grid.Row="0" Columns="3">
+            <Button Content="Nova Tarefa" Command="{Binding NovaTarefaCommand}" Margin="3"/>
+            <Button Content="Excluir Tarefa" Command="{Binding ExcluirTarefaCommand}" Margin="3"/>
+            <Button Content="Filtro" Command="{Binding FiltrarPesquisaTarefa}" Margin="3" IsEnabled="{Binding FiltrarPesquisaTarefaEnable}"/>
+        </UniformGrid>
+        <TextBlock Text="Pesquisar" Margin="3" Grid.Row="1"/>
+        <DockPanel Grid.Row="2">
+            <Button DockPanel.Dock="Right" Command="{Binding PesquisarTarefaCommand}" Margin="3" Padding="25,0">
+                <Image Source="/UI/Source/search_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" Height="15"/>
+            </Button>
+            <TextBox Text="{Binding TarefaPesquisa}" Grid.Row="2" Margin="3"/>
+        </DockPanel>
+        <DataGrid ItemsSource="{Binding Tarefas}" SelectedItem="{Binding Tarefa}" Grid.Row="3" Margin="3" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Sel" Binding="{Binding Sel}"/>
+                <DataGridTextColumn Header="Titulo" Binding="{Binding Titulo}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Abrir Tarefa" Command="{Binding AbrirTarefaCommand}" Grid.Row="4" HorizontalAlignment="Right" Padding="25,0" Margin="3"/>
+    </Grid>
+</Window>

@@ -9,9 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="DAO\" />
-    <Folder Include="UI\" />
   </ItemGroup>
 
 </Project>
