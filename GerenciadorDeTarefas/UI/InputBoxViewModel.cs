@@ -4,6 +4,7 @@ using GerenciadorDeTarefas.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace GerenciadorDeTarefas.UI
 {
@@ -35,11 +36,16 @@ namespace GerenciadorDeTarefas.UI
         {
             TituloInput = tituloInput;
             TituloJanela = tituloJanele;
-            SalvarInput = new DelegateCommand<IDialogService>(OnTituloJanela);
+            SalvarInput = new DelegateCommand<IDialogService>(OnSalvar);
         }
 
-        public void OnTituloJanela(IDialogService args)
+        public void OnSalvar(IDialogService args)
         {
+            if(Input == null)
+            {
+                MessageBox.Show("Preencha o campo de nome para poder salvar");
+                return;
+            }
             args.DialogResult = true;
             args.Close();
         }
